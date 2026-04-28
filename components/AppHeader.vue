@@ -1,17 +1,21 @@
+<script setup lang="ts">
+const route = useRoute()
+import logoUrl from '~/assets/images/logo1.png'
+</script>
+
 <template>
   <header class="header">
     <div class="inner">
       <NuxtLink class="brand" to="/" aria-label="东营胜泰石油工程技术有限公司首页">
-        <span class="brand-mark">胜泰</span>
+        <img class="brand-logo" :src="logoUrl" alt="东营胜泰石油工程技术有限公司 Logo" />
         <span class="brand-copy">
           <strong>东营胜泰石油工程技术有限公司</strong>
           <small>Dongying Shengtai Petroleum Engineering Technology Co., Ltd.</small>
         </span>
       </NuxtLink>
-      <nav class="nav" aria-label="首页导航">
-        <a class="nav-item" href="#top" aria-current="page">首页</a>
-        <span class="nav-item is-placeholder">公司简介</span>
-        <span class="nav-item is-placeholder">业务领域</span>
+      <nav class="nav" aria-label="站点导航">
+        <NuxtLink class="nav-item" to="/" :aria-current="route.path === '/' ? 'page' : undefined">首页</NuxtLink>
+        <NuxtLink class="nav-item" to="/about" :aria-current="route.path === '/about' ? 'page' : undefined">公司简介</NuxtLink>
         <span class="nav-item is-placeholder">发展历程</span>
         <span class="nav-item is-placeholder">资质荣誉</span>
         <span class="nav-item is-placeholder">企业文化</span>
@@ -45,38 +49,33 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 16px;
-  min-width: 0;
+  gap: 8px;
+  min-width: 360px;
   margin-right: auto;
 }
 
-.brand-mark {
-  width: 54px;
-  height: 54px;
-  border-radius: 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    linear-gradient(135deg, rgba(179, 34, 34, 0.94), rgba(126, 10, 10, 0.96)),
-    linear-gradient(180deg, #143d74, #0d2748);
-  color: #fff;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  box-shadow: 0 12px 24px rgba(126, 10, 10, 0.24);
+.brand-logo {
+  width: 92px;
+  height: auto;
+  flex: 0 0 auto;
+  display: block;
+  margin-left: 20px;
+  margin-right: -18px;
 }
 
 .brand-copy {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
+  flex: 1;
 }
 
 .brand-copy strong {
   font-size: 22px;
   line-height: 1.2;
   color: #102f57;
+  white-space: nowrap;
 }
 
 .brand-copy small {
@@ -132,7 +131,8 @@
 }
 
 .nav a.nav-item:hover::after,
-.nav a.nav-item:focus-visible::after {
+.nav a.nav-item:focus-visible::after,
+.nav a.nav-item[aria-current="page"]::after {
   transform: scaleX(1);
 }
 
@@ -149,6 +149,7 @@
   }
 
   .brand {
+    min-width: 0;
     margin-right: 0;
   }
 
@@ -162,17 +163,18 @@
 @media (max-width: 640px) {
   .brand {
     align-items: flex-start;
+    gap: 6px;
   }
 
-  .brand-mark {
-    width: 46px;
-    height: 46px;
-    border-radius: 12px;
-    font-size: 16px;
+  .brand-logo {
+    width: 68px;
+    margin-left: 12px;
+    margin-right: -10px;
   }
 
   .brand-copy strong {
     font-size: 18px;
+    white-space: normal;
   }
 
   .brand-copy small {

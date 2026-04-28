@@ -86,6 +86,13 @@ const businessShowcase = [
   }
 ]
 
+const cultureSlides = [
+  { title: '参加专业培训与团队建设', tag: '企业风貌 01' },
+  { title: '综合办公区域与管理环境', tag: '企业风貌 02' },
+  { title: '主办公楼及园区形象展示', tag: '企业风貌 03' },
+  { title: '技术团队开展现场研讨交流', tag: '企业风貌 04' }
+]
+
 const currentIndex = ref(0)
 
 const currentSlide = computed(() => slides[currentIndex.value])
@@ -287,6 +294,31 @@ onBeforeUnmount(() => {
             </article>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="culture-section">
+      <div class="culture-head">
+        <div class="culture-head-center">
+          <h2>企业文化</h2>
+          <span>Culture</span>
+          <i></i>
+        </div>
+        <a href="javascript:void(0)" class="more-link">MORE</a>
+      </div>
+
+      <div class="culture-slider">
+        <button class="culture-arrow left" type="button" aria-label="上一组企业文化图片">‹</button>
+        <div class="culture-track">
+          <article v-for="item in cultureSlides" :key="item.tag" class="culture-card">
+            <div class="culture-image" aria-hidden="true"></div>
+            <div class="culture-overlay">
+              <strong>{{ item.title }}</strong>
+              <span>{{ item.tag }}</span>
+            </div>
+          </article>
+        </div>
+        <button class="culture-arrow right" type="button" aria-label="下一组企业文化图片">›</button>
       </div>
     </section>
   </div>
@@ -1009,6 +1041,134 @@ onBeforeUnmount(() => {
   line-height: 1.7;
 }
 
+.culture-section {
+  margin-top: 16px;
+  padding: 16px 14px 12px;
+  background: #ffffff;
+}
+
+.culture-head {
+  position: relative;
+  padding: 0 0 12px;
+  border-bottom: 1px solid rgba(16, 40, 66, 0.12);
+}
+
+.culture-head-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.culture-head-center h2 {
+  margin: 0;
+  color: #0d5aa6;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.culture-head-center span {
+  margin-top: 2px;
+  color: #f08b1f;
+  font-size: 14px;
+}
+
+.culture-head-center i {
+  width: 54px;
+  height: 4px;
+  margin-top: 6px;
+  background: linear-gradient(90deg, #0d5aa6, #1a78d1);
+}
+
+.culture-head .more-link {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.culture-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.culture-arrow {
+  width: 30px;
+  height: 120px;
+  border: 1px solid rgba(16, 40, 66, 0.08);
+  background: #f4f7fa;
+  color: #7d8a96;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.culture-track {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  flex: 1;
+}
+
+.culture-card {
+  position: relative;
+  min-height: 120px;
+  overflow: hidden;
+  background: #d7e0ea;
+}
+
+.culture-image {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(9, 31, 55, 0.08), rgba(9, 31, 55, 0.18)),
+    linear-gradient(135deg, #cad7e5 0%, #eef3f7 48%, #bfcddd 100%);
+}
+
+.culture-card:nth-child(2) .culture-image {
+  background:
+    linear-gradient(180deg, rgba(9, 31, 55, 0.08), rgba(9, 31, 55, 0.18)),
+    linear-gradient(135deg, #d8ddd7 0%, #f1f3ef 48%, #c8d1c8 100%);
+}
+
+.culture-card:nth-child(3) .culture-image {
+  background:
+    linear-gradient(180deg, rgba(9, 31, 55, 0.08), rgba(9, 31, 55, 0.18)),
+    linear-gradient(135deg, #bed1e3 0%, #f2f6fa 48%, #ccd9e5 100%);
+}
+
+.culture-card:nth-child(4) .culture-image {
+  background:
+    linear-gradient(180deg, rgba(9, 31, 55, 0.08), rgba(9, 31, 55, 0.18)),
+    linear-gradient(135deg, #d7d9dc 0%, #f3f4f5 48%, #c7ccd2 100%);
+}
+
+.culture-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.34) 100%);
+}
+
+.culture-overlay strong {
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.culture-overlay span {
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+}
+
 @media (max-width: 1080px) {
   .company-top {
     grid-template-columns: 1fr;
@@ -1021,6 +1181,10 @@ onBeforeUnmount(() => {
 
   .company-side-brand {
     display: none;
+  }
+
+  .culture-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1056,6 +1220,36 @@ onBeforeUnmount(() => {
 
   .showcase-image {
     min-height: 120px;
+  }
+
+  .culture-section {
+    margin-top: 12px;
+    padding: 14px 10px 10px;
+  }
+
+  .culture-slider {
+    gap: 6px;
+  }
+
+  .culture-arrow {
+    width: 24px;
+    height: 96px;
+  }
+
+  .culture-track {
+    grid-template-columns: 1fr;
+  }
+
+  .culture-card {
+    min-height: 96px;
+  }
+
+  .culture-overlay {
+    padding: 10px 12px;
+  }
+
+  .culture-overlay strong {
+    font-size: 14px;
   }
 }
 </style>
