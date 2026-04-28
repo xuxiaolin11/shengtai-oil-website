@@ -16,7 +16,7 @@ import logoUrl from '~/assets/images/logo1.png'
       <nav class="nav" aria-label="站点导航">
         <NuxtLink class="nav-item" to="/" :aria-current="route.path === '/' ? 'page' : undefined">首页</NuxtLink>
         <NuxtLink class="nav-item" to="/about" :aria-current="route.path === '/about' ? 'page' : undefined">公司简介</NuxtLink>
-        <span class="nav-item is-placeholder">发展历程</span>
+        <NuxtLink class="nav-item" to="/history" :aria-current="route.path === '/history' ? 'page' : undefined">发展历程</NuxtLink>
         <span class="nav-item is-placeholder">资质荣誉</span>
         <span class="nav-item is-placeholder">企业文化</span>
         <span class="nav-item is-placeholder">新闻动态</span>
@@ -32,9 +32,9 @@ import logoUrl from '~/assets/images/logo1.png'
   top: 0;
   z-index: 30;
   backdrop-filter: blur(16px);
-  background: rgba(248, 251, 255, 0.94);
-  border-bottom: 1px solid rgba(16, 53, 94, 0.1);
-  box-shadow: 0 10px 30px rgba(7, 29, 56, 0.06);
+  background: linear-gradient(180deg, #d93a40 0%, #c92f36 52%, #b9252c 100%);
+  border-bottom: 1px solid rgba(128, 18, 23, 0.32);
+  box-shadow: 0 10px 24px rgba(90, 21, 31, 0.12);
 }
 
 .inner {
@@ -52,6 +52,8 @@ import logoUrl from '~/assets/images/logo1.png'
   gap: 8px;
   min-width: 360px;
   margin-right: auto;
+  padding: 10px 22px 10px 0;
+  background: transparent;
 }
 
 .brand-logo {
@@ -74,15 +76,16 @@ import logoUrl from '~/assets/images/logo1.png'
 .brand-copy strong {
   font-size: 22px;
   line-height: 1.2;
-  color: #102f57;
+  color: #ffffff;
   white-space: nowrap;
+  letter-spacing: 0.02em;
 }
 
 .brand-copy small {
   font-size: 11px;
   line-height: 1.2;
   letter-spacing: 0.08em;
-  color: #5e718b;
+  color: rgba(255, 255, 255, 0.74);
   text-transform: uppercase;
 }
 
@@ -97,7 +100,7 @@ import logoUrl from '~/assets/images/logo1.png'
 .nav-item {
   position: relative;
   padding: 10px 0;
-  color: #27486d;
+  color: rgba(255, 255, 255, 0.92);
   font-size: 17px;
   font-weight: 700;
   line-height: 1.2;
@@ -109,7 +112,7 @@ import logoUrl from '~/assets/images/logo1.png'
 }
 
 .nav a.nav-item[aria-current="page"] {
-  color: #0f2e55;
+  color: #ffffff;
 }
 
 .nav a.nav-item::after {
@@ -121,13 +124,13 @@ import logoUrl from '~/assets/images/logo1.png'
   height: 2px;
   transform: scaleX(0);
   transform-origin: left;
-  background: linear-gradient(90deg, #b41f24, #183f72);
+  background: rgba(255, 255, 255, 0.96);
   transition: transform 0.2s ease;
 }
 
 .nav a.nav-item:hover,
 .nav a.nav-item:focus-visible {
-  color: #0f2e55;
+  color: #ffffff;
 }
 
 .nav a.nav-item:hover::after,
@@ -137,7 +140,7 @@ import logoUrl from '~/assets/images/logo1.png'
 }
 
 .is-placeholder {
-  color: #4a6788;
+  color: rgba(255, 255, 255, 0.76);
   cursor: default;
 }
 
@@ -151,6 +154,7 @@ import logoUrl from '~/assets/images/logo1.png'
   .brand {
     min-width: 0;
     margin-right: 0;
+    padding-right: 12px;
   }
 
   .nav {

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import companyUrl from '~/assets/images/company.png'
+import companyBannerUrl from '~/assets/images/company_1.png'
+import qualificationImageUrl from '~/assets/images/gongsizizhi.png'
+
 useSeoMeta({
   title: '公司简介 | 东营胜泰石油工程技术有限公司',
   description:
@@ -65,6 +69,10 @@ const orgUnits = [
 
 <template>
   <div class="about-page">
+    <section class="about-hero">
+      <img :src="companyBannerUrl" alt="东营胜泰石油工程技术有限公司企业展示图片" />
+    </section>
+
     <section class="about-shell">
       <aside class="about-side">
         <div class="about-side-title">关于胜泰</div>
@@ -103,7 +111,9 @@ const orgUnits = [
               <strong>公司介绍</strong>
             </div>
             <div class="intro-grid">
-              <div class="intro-image" aria-hidden="true"></div>
+              <div class="intro-image">
+                <img :src="companyUrl" alt="东营胜泰石油工程技术有限公司办公楼" />
+              </div>
               <div class="intro-copy">
                 <p>
                   东营胜泰石油工程技术有限公司成立于2009年，由中石化胜利石油管理局黄河钻井公司改制成立，
@@ -173,6 +183,9 @@ const orgUnits = [
                 <strong>{{ item }}</strong>
               </div>
             </div>
+            <div class="qualification-image">
+              <img :src="qualificationImageUrl" alt="东营胜泰石油工程技术有限公司企业资质展示" />
+            </div>
           </div>
         </article>
 
@@ -223,7 +236,8 @@ const orgUnits = [
 
 <style scoped>
 .about-page {
-  background: #f7f8fa;
+  background:
+    linear-gradient(180deg, #f8f8f9 0%, #f3f4f6 100%);
 }
 
 .about-shell {
@@ -232,12 +246,27 @@ const orgUnits = [
   display: grid;
   grid-template-columns: 305px minmax(0, 1fr);
   gap: 0;
-  padding: 20px 0 50px;
+  padding: 18px 0 50px;
+}
+
+.about-hero {
+  width: min(1240px, calc(100% - 32px));
+  margin: 0 auto;
+  padding-top: 18px;
+}
+
+.about-hero img {
+  width: 100%;
+  height: 300px;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  background: #f2f2f3;
 }
 
 .about-side {
   background: #ffffff;
-  border: 1px solid rgba(16, 40, 66, 0.12);
+  border: 1px solid rgba(210, 54, 59, 0.12);
   border-right: 0;
 }
 
@@ -246,10 +275,11 @@ const orgUnits = [
   display: flex;
   align-items: center;
   padding: 0 18px;
-  color: #0d4e93;
+  color: #222222;
   font-size: 18px;
   font-weight: 700;
-  border-bottom: 1px solid rgba(16, 40, 66, 0.12);
+  border-bottom: 1px solid rgba(210, 54, 59, 0.12);
+  background: #ffffff;
 }
 
 .about-side-nav {
@@ -262,9 +292,9 @@ const orgUnits = [
   align-items: center;
   justify-content: space-between;
   padding: 0 18px;
-  color: #3d5470;
+  color: #59616b;
   font-size: 16px;
-  border-bottom: 1px solid rgba(16, 40, 66, 0.12);
+  border-bottom: 1px solid rgba(210, 54, 59, 0.1);
   background: #ffffff;
   border-left: 0;
   border-right: 0;
@@ -273,7 +303,7 @@ const orgUnits = [
 }
 
 .side-link.active {
-  background: linear-gradient(180deg, #115aa4, #0c4c8f);
+  background: linear-gradient(180deg, #d2363b, #b51f2f);
   color: #ffffff;
   font-weight: 700;
 }
@@ -286,7 +316,7 @@ const orgUnits = [
 .about-main {
   min-width: 0;
   background: #ffffff;
-  border: 1px solid rgba(16, 40, 66, 0.12);
+  border: 1px solid rgba(210, 54, 59, 0.12);
 }
 
 .about-main-head {
@@ -296,24 +326,25 @@ const orgUnits = [
   justify-content: space-between;
   gap: 16px;
   padding: 0 24px;
-  border-bottom: 1px solid rgba(16, 40, 66, 0.12);
+  border-bottom: 1px solid rgba(210, 54, 59, 0.12);
+  background: #ffffff;
 }
 
 .about-main-head h2 {
   margin: 0;
-  color: #0d4e93;
+  color: #222222;
   font-size: 18px;
   font-weight: 700;
 }
 
 .breadcrumb {
-  color: #8a96a3;
+  color: #8a9098;
   font-size: 13px;
 }
 
 .about-section {
   padding: 24px;
-  border-top: 1px solid rgba(16, 40, 66, 0.05);
+  border-top: 1px solid rgba(210, 54, 59, 0.05);
   scroll-margin-top: 110px;
 }
 
@@ -323,65 +354,42 @@ const orgUnits = [
 
 .section-title-line {
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(16, 40, 66, 0.08);
+  border-bottom: 1px solid rgba(210, 54, 59, 0.08);
 }
 
 .section-title-line strong {
-  color: #0d4e93;
+  color: #222222;
   font-size: 20px;
   font-weight: 700;
 }
 
 .intro-grid {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
+  grid-template-columns: 380px minmax(0, 1fr);
   gap: 24px;
   padding-top: 20px;
 }
 
 .intro-image {
-  min-height: 220px;
-  border: 1px solid rgba(20, 69, 124, 0.12);
-  background:
-    linear-gradient(180deg, rgba(22, 83, 146, 0.08), rgba(22, 83, 146, 0.02)),
-    linear-gradient(135deg, #e1e9f1 0%, #c8d7e6 46%, #f5f8fb 100%);
+  min-height: 230px;
+  overflow: hidden;
+  border: 1px solid rgba(210, 54, 59, 0.1);
+  background: #f2f2f3;
   position: relative;
 }
 
-.intro-image::before {
-  content: "";
-  position: absolute;
-  inset: 18px 28px 18px 28px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78)) top center / 86% 8px no-repeat,
-    linear-gradient(180deg, #dbe5ef 0%, #ffffff 100%);
-  clip-path: polygon(18% 0, 82% 0, 100% 22%, 100% 100%, 0 100%, 0 22%);
-  border: 1px solid rgba(20, 69, 124, 0.1);
-}
-
-.intro-image::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 46px;
-  width: 62%;
-  height: 120px;
-  transform: translateX(-50%);
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(23, 71, 126, 0.16) 0,
-      rgba(23, 71, 126, 0.16) 2px,
-      transparent 2px,
-      transparent 18px
-    ),
-    linear-gradient(180deg, #fdfefe 0%, #eef3f8 100%);
-  border: 1px solid rgba(20, 69, 124, 0.12);
+.intro-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  background: #f2f2f3;
 }
 
 .intro-copy p {
   margin: 0 0 14px;
-  color: #5e6f82;
+  color: #333333;
   font-size: 15px;
   line-height: 1.95;
   text-align: justify;
@@ -397,20 +405,20 @@ const orgUnits = [
 .scale-item {
   min-height: 86px;
   padding: 16px 18px;
-  background: #f7f9fc;
-  border: 1px solid rgba(16, 40, 66, 0.08);
+  background: #fbfbfc;
+  border: 1px solid rgba(210, 54, 59, 0.08);
 }
 
 .scale-item span {
   display: block;
-  color: #7c8a97;
+  color: #8b9098;
   font-size: 14px;
 }
 
 .scale-item strong {
   display: block;
   margin-top: 8px;
-  color: #0d4e93;
+  color: #c82931;
   font-size: 24px;
   line-height: 1.2;
 }
@@ -418,12 +426,12 @@ const orgUnits = [
 .rig-box {
   margin-top: 16px;
   padding: 16px 18px;
-  background: #f1f5f9;
-  border-left: 4px solid #0f5aa4;
+  background: #fbf7f7;
+  border-left: 4px solid #d2363b;
 }
 
 .rig-box-title {
-  color: #0d4e93;
+  color: #222222;
   font-size: 16px;
   font-weight: 700;
 }
@@ -438,8 +446,8 @@ const orgUnits = [
 .rig-tags span {
   padding: 8px 12px;
   background: #ffffff;
-  border: 1px solid rgba(16, 40, 66, 0.1);
-  color: #4b5f76;
+  border: 1px solid rgba(210, 54, 59, 0.1);
+  color: #60666e;
   font-size: 14px;
 }
 
@@ -449,7 +457,7 @@ const orgUnits = [
 
 .business-panel > p {
   margin: 0;
-  color: #6b7b8d;
+  color: #333333;
   font-size: 15px;
   line-height: 1.9;
 }
@@ -468,7 +476,7 @@ const orgUnits = [
 
 .qualification-panel > p {
   margin: 0;
-  color: #6b7b8d;
+  color: #333333;
   font-size: 15px;
   line-height: 1.9;
 }
@@ -480,18 +488,30 @@ const orgUnits = [
   margin-top: 18px;
 }
 
+.qualification-image {
+  margin-top: 22px;
+  border: 1px solid rgba(210, 54, 59, 0.08);
+  background: #ffffff;
+}
+
+.qualification-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .qualification-item {
   min-height: 52px;
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 0 14px;
-  background: #f8fafc;
-  border: 1px solid rgba(16, 40, 66, 0.08);
+  background: #fbfbfc;
+  border: 1px solid rgba(210, 54, 59, 0.08);
 }
 
 .qualification-item strong {
-  color: #36506d;
+  color: #333333;
   font-size: 15px;
 }
 
@@ -503,8 +523,8 @@ const orgUnits = [
 
 .leader-item {
   padding: 16px 18px;
-  background: #f7f9fc;
-  border: 1px solid rgba(16, 40, 66, 0.08);
+  background: #fbfbfc;
+  border: 1px solid rgba(210, 54, 59, 0.08);
 }
 
 .leader-head {
@@ -515,18 +535,18 @@ const orgUnits = [
 }
 
 .leader-head span {
-  color: #6d7b8a;
+  color: #666666;
   font-size: 14px;
 }
 
 .leader-head strong {
-  color: #0d4e93;
+  color: #222222;
   font-size: 18px;
 }
 
 .leader-item p {
   margin: 12px 0 0;
-  color: #6f7f90;
+  color: #333333;
   font-size: 14px;
   line-height: 1.8;
 }
@@ -537,20 +557,20 @@ const orgUnits = [
   align-items: center;
   gap: 12px;
   padding: 0 14px;
-  background: #f8fafc;
-  border: 1px solid rgba(16, 40, 66, 0.08);
+  background: #fbfbfc;
+  border: 1px solid rgba(210, 54, 59, 0.08);
 }
 
 .bullet {
   width: 8px;
   height: 8px;
-  background: #0f5aa4;
+  background: #d2363b;
   border-radius: 50%;
   flex: 0 0 auto;
 }
 
 .business-item strong {
-  color: #36506d;
+  color: #333333;
   font-size: 15px;
 }
 
@@ -581,25 +601,29 @@ const orgUnits = [
 
 .org-box {
   padding: 16px 18px;
-  background: #f7f9fc;
-  border: 1px solid rgba(16, 40, 66, 0.08);
+  background: #fbfbfc;
+  border: 1px solid rgba(210, 54, 59, 0.08);
 }
 
 .top-box,
 .middle-box {
-  background: #eef4fa;
-  border-left: 4px solid #0f5aa4;
+  background: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid rgba(210, 54, 59, 0.16);
+  border-left: 4px solid #d2363b;
+  padding-left: 16px;
 }
 
 .org-box strong {
   display: block;
-  color: #0d4e93;
+  color: #222222;
   font-size: 16px;
 }
 
 .org-box p {
   margin: 10px 0 0;
-  color: #6f7f90;
+  color: #333333;
   font-size: 14px;
   line-height: 1.8;
 }
@@ -624,6 +648,15 @@ const orgUnits = [
 }
 
 @media (max-width: 720px) {
+  .about-hero {
+    width: min(1240px, calc(100% - 20px));
+    padding-top: 14px;
+  }
+
+  .about-hero img {
+    height: 180px;
+  }
+
   .about-shell {
     width: min(1240px, calc(100% - 20px));
     padding: 14px 0 32px;
@@ -645,7 +678,7 @@ const orgUnits = [
   }
 
   .intro-image {
-    min-height: 170px;
+    min-height: 190px;
   }
 
   .intro-copy p,
