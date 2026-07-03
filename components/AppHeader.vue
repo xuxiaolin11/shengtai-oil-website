@@ -19,7 +19,7 @@ import logoUrl from '~/assets/images/logo1.png'
         <NuxtLink class="nav-item" to="/history" :aria-current="route.path === '/history' ? 'page' : undefined">发展历程</NuxtLink>
         <NuxtLink class="nav-item" to="/honor" :aria-current="route.path === '/honor' ? 'page' : undefined">资质荣誉</NuxtLink>
         <NuxtLink class="nav-item" to="/culture" :aria-current="route.path === '/culture' ? 'page' : undefined">企业文化</NuxtLink>
-        <span class="nav-item is-placeholder">新闻动态</span>
+        <NuxtLink class="nav-item" to="/news" :aria-current="route.path.startsWith('/news') ? 'page' : undefined">新闻动态</NuxtLink>
         <NuxtLink class="nav-item" to="/contact" :aria-current="route.path === '/contact' ? 'page' : undefined">联系我们</NuxtLink>
       </nav>
     </div>

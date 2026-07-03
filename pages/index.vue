@@ -1,4 +1,13 @@
 <script setup lang="ts">
+import { newsArticles } from '~/content/news'
+import companyImageUrl from '~/assets/images/company.png'
+import cultureImage1Url from '~/assets/images/culture/culture_1.jpg'
+import cultureImage2Url from '~/assets/images/culture/culture_2.jpg'
+import cultureImage3Url from '~/assets/images/culture/culture_3.jpg'
+import cultureImage4Url from '~/assets/images/culture/culture_4.jpg'
+import cultureImage5Url from '~/assets/images/culture/culture_5.jpg'
+import cultureImage6Url from '~/assets/images/culture/culture_6.jpg'
+
 useSeoMeta({
   title: '首页 | 东营胜泰石油工程技术有限公司',
   description:
@@ -10,44 +19,53 @@ const slides = [
     date: '2026-04-27',
     title: '公司持续强化石油工程主业能力建设，重点井场项目组织运行平稳有序',
     summary: '后续可通过后台 API 配置轮播图片、标题、副标题、跳转链接与上下线状态。',
-    label: '01'
+    label: '01',
+    image: cultureImage1Url
   },
   {
     date: '2026-04-18',
     title: '坚持安全生产与规范管理并重，推进现场管理标准化、精细化、数字化',
     summary: '本区域为 Banner 轮播位静态结构，后续可直接接入后台内容管理系统。',
-    label: '02'
+    label: '02',
+    image: cultureImage2Url
   },
   {
     date: '2026-04-08',
     title: '深耕油气工程服务主业，稳步拓展地热井施工与新能源相关业务领域',
     summary: '支持展示企业重点新闻、项目成果、责任信息与年度专题活动内容。',
-    label: '03'
+    label: '03',
+    image: cultureImage3Url
+  },
+  {
+    date: '2026-03-26',
+    title: '持续强化技术队伍建设与现场执行能力，夯实复杂工况施工组织基础',
+    summary: '围绕重点区块项目执行与班组协作管理，进一步提升现场保障与履约能力。',
+    label: '04',
+    image: cultureImage4Url
+  },
+  {
+    date: '2026-03-09',
+    title: '坚持标准化作业与精细化管控并行，稳步提升钻井施工品质与安全水平',
+    summary: '通过严格过程控制与班组协同管理，持续提升工程质量与现场管理成效。',
+    label: '05',
+    image: cultureImage5Url
+  },
+  {
+    date: '2026-02-22',
+    title: '聚焦一线实战与人才培养并重，推动项目执行、技术提升与团队成长协同发力',
+    summary: '以项目实践带动队伍成长，进一步增强复杂井施工能力与区域服务支撑能力。',
+    label: '06',
+    image: cultureImage6Url
   }
 ]
 
-const newsTabs = ['公司要闻', '媒体报道', '专题专栏']
+const newsTabs = ['公司要闻']
 
-const newsItems = [
-  {
-    day: '27',
-    ym: '2026-04',
-    title: '公司召开重点项目调度会议，系统部署第二季度工程生产与安全管理工作',
-    summary: '围绕重点井场施工组织、资源调配、质量控制与风险防范等事项进行专题安排。'
-  },
-  {
-    day: '18',
-    ym: '2026-04',
-    title: '新疆区域重点井场施工任务稳步推进，现场技术支持与保障措施同步强化',
-    summary: '聚焦复杂工况作业要求，强化现场管理、技术交底与过程质量追踪。'
-  },
-  {
-    day: '08',
-    ym: '2026-04',
-    title: '公司持续完善数字化管理机制，推动提质增效与规范运营协同提升',
-    summary: '围绕项目执行、数据归集、责任闭环等管理环节夯实制度与流程基础。'
-  }
-]
+const newsItems = newsArticles.slice(0, 3).map((item) => ({
+  ...item,
+  day: item.date.slice(8, 10),
+  ym: item.date.slice(0, 7)
+}))
 
 const quickLinks = [
   { title: '公司概况', subtitle: 'Company profile' },
@@ -55,6 +73,11 @@ const quickLinks = [
   { title: '核心业务', subtitle: 'Core business' },
   { title: '客户服务', subtitle: 'Customer service' }
 ]
+
+const showQuickLinks = false
+const showDivisionSection = false
+const showCultureSection = false
+const showBannerOverlayContent = false
 
 const divisionItems = [
   { title: '石油工程技术服务板块', date: '2026-04-11' },
@@ -87,11 +110,15 @@ const businessShowcase = [
 ]
 
 const cultureSlides = [
-  { title: '参加专业培训与团队建设', tag: '企业风貌 01' },
-  { title: '综合办公区域与管理环境', tag: '企业风貌 02' },
-  { title: '主办公楼及园区形象展示', tag: '企业风貌 03' },
-  { title: '技术团队开展现场研讨交流', tag: '企业风貌 04' }
+  { title: '参加专业培训与团队建设', tag: '企业风貌 01', image: cultureImage1Url },
+  { title: '综合办公区域与管理环境', tag: '企业风貌 02', image: cultureImage2Url },
+  { title: '主办公楼及园区形象展示', tag: '企业风貌 03', image: cultureImage3Url },
+  { title: '技术团队开展现场研讨交流', tag: '企业风貌 04', image: cultureImage4Url },
+  { title: '班组协作与现场执行场景', tag: '企业风貌 05', image: cultureImage5Url },
+  { title: '一线作业与文化建设展示', tag: '企业风貌 06', image: cultureImage6Url }
 ]
+
+const cultureMarqueeSlides = [...cultureSlides, ...cultureSlides]
 
 const currentIndex = ref(0)
 
@@ -103,10 +130,6 @@ const prevSlide = () => {
 
 const nextSlide = () => {
   currentIndex.value = (currentIndex.value + 1) % slides.length
-}
-
-const goToSlide = (index: number) => {
-  currentIndex.value = index
 }
 
 let timer: ReturnType<typeof setInterval> | null = null
@@ -133,7 +156,14 @@ onBeforeUnmount(() => {
           </header>
 
           <div class="slider-visual" aria-label="首页轮播主图展示区域">
-            <div class="visual-overlay">
+            <img class="slider-image" :src="currentSlide.image" :alt="currentSlide.title" />
+            <button class="slider-arrow slider-arrow-prev" type="button" aria-label="上一张轮播图" @click="prevSlide">
+              ‹
+            </button>
+            <button class="slider-arrow slider-arrow-next" type="button" aria-label="下一张轮播图" @click="nextSlide">
+              ›
+            </button>
+            <div v-if="showBannerOverlayContent" class="visual-overlay">
               <div class="visual-copy">
                 <div class="visual-kicker">Shengtai Petroleum Engineering</div>
                 <p>{{ currentSlide.summary }}</p>
@@ -141,23 +171,6 @@ onBeforeUnmount(() => {
               <div class="visual-badge">Banner {{ currentSlide.label }}</div>
             </div>
           </div>
-
-          <footer class="slider-footer">
-            <button type="button" aria-label="上一张轮播图" @click="prevSlide">上一张</button>
-            <div class="slider-dots" aria-label="轮播分页">
-              <button
-                v-for="(slide, index) in slides"
-                :key="slide.label"
-                :class="['dot', { active: index === currentIndex }]"
-                type="button"
-                :aria-label="`切换到第 ${index + 1} 张轮播图`"
-                @click="goToSlide(index)"
-              >
-                {{ index + 1 }}
-              </button>
-            </div>
-            <button type="button" aria-label="下一张轮播图" @click="nextSlide">下一张</button>
-          </footer>
         </article>
 
         <aside class="banner-news">
@@ -182,7 +195,7 @@ onBeforeUnmount(() => {
           </div>
 
           <div class="news-list">
-            <article v-for="item in newsItems" :key="item.title" class="news-item">
+            <NuxtLink v-for="item in newsItems" :key="item.slug" :to="`/news/${item.slug}`" class="news-item">
               <div class="news-date-box">
                 <strong>{{ item.day }}</strong>
                 <span>{{ item.ym }}</span>
@@ -191,12 +204,12 @@ onBeforeUnmount(() => {
                 <h2>{{ item.title }}</h2>
                 <p>{{ item.summary }}</p>
               </div>
-            </article>
+            </NuxtLink>
           </div>
         </aside>
       </div>
 
-      <div class="quick-links">
+      <div v-if="showQuickLinks" class="quick-links">
         <a v-for="item in quickLinks" :key="item.title" href="javascript:void(0)" class="quick-link">
           <span class="quick-icon" aria-hidden="true"></span>
           <span class="quick-copy">
@@ -209,7 +222,7 @@ onBeforeUnmount(() => {
     </section>
 
     <section class="company-section">
-      <div class="company-top">
+      <div :class="['company-top', { 'single-column': !showDivisionSection }]">
         <div class="company-column">
           <div class="section-bar">
             <div class="section-bar-title">
@@ -221,7 +234,9 @@ onBeforeUnmount(() => {
           </div>
 
           <div class="company-intro">
-            <div class="company-image" aria-hidden="true"></div>
+            <div class="company-image">
+              <img :src="companyImageUrl" alt="东营胜泰石油工程技术有限公司办公与厂区展示" />
+            </div>
             <div class="company-copy">
               <p>
                 东营胜泰石油工程技术有限公司成立于2009年，由中石化胜利石油管理局黄河钻井公司改制成立，
@@ -239,7 +254,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
 
-        <div class="company-column">
+        <div v-if="showDivisionSection" class="company-column">
           <div class="section-bar">
             <div class="section-bar-title">
               <span class="dot-mark"></span>
@@ -297,7 +312,7 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <section class="culture-section">
+    <section v-if="showCultureSection" class="culture-section">
       <div class="culture-head">
         <div class="culture-head-center">
           <h2>企业文化</h2>
@@ -308,17 +323,15 @@ onBeforeUnmount(() => {
       </div>
 
       <div class="culture-slider">
-        <button class="culture-arrow left" type="button" aria-label="上一组企业文化图片">‹</button>
         <div class="culture-track">
-          <article v-for="item in cultureSlides" :key="item.tag" class="culture-card">
-            <div class="culture-image" aria-hidden="true"></div>
+          <article v-for="(item, index) in cultureMarqueeSlides" :key="`${item.tag}-${index}`" class="culture-card">
+            <img class="culture-image" :src="item.image" :alt="item.title" />
             <div class="culture-overlay">
               <strong>{{ item.title }}</strong>
               <span>{{ item.tag }}</span>
             </div>
           </article>
         </div>
-        <button class="culture-arrow right" type="button" aria-label="下一组企业文化图片">›</button>
       </div>
     </section>
   </div>
@@ -376,55 +389,55 @@ onBeforeUnmount(() => {
   min-height: 300px;
   overflow: hidden;
   border: 1px solid rgba(17, 67, 122, 0.16);
-  background:
-    linear-gradient(180deg, rgba(15, 45, 82, 0.16), rgba(12, 34, 60, 0.32)),
-    linear-gradient(135deg, rgba(29, 103, 181, 0.12), rgba(171, 29, 36, 0.12)),
-    linear-gradient(120deg, #b9cbe0 0%, #e7eef6 28%, #a8bbd0 52%, #eff4fa 100%);
+  background: #d9e2ec;
 }
 
-.slider-visual::before {
-  content: "";
+.slider-image {
   position: absolute;
   inset: 0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(22, 65, 110, 0.1) 0,
-      rgba(22, 65, 110, 0.1) 18px,
-      transparent 18px,
-      transparent 84px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      rgba(177, 34, 40, 0.08) 0,
-      rgba(177, 34, 40, 0.08) 1px,
-      transparent 1px,
-      transparent 56px
-    );
-  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .slider-visual::after {
   content: "";
   position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 10%;
-  height: 72px;
-  border-radius: 10px;
+  inset: 0;
   background:
-    radial-gradient(circle at 8% 24%, rgba(177, 34, 40, 0.95) 0 4px, transparent 5px),
-    radial-gradient(circle at 16% 24%, rgba(177, 34, 40, 0.95) 0 4px, transparent 5px),
-    radial-gradient(circle at 24% 24%, rgba(177, 34, 40, 0.95) 0 4px, transparent 5px),
-    radial-gradient(circle at 32% 24%, rgba(177, 34, 40, 0.95) 0 4px, transparent 5px),
-    radial-gradient(circle at 40% 24%, rgba(177, 34, 40, 0.95) 0 4px, transparent 5px),
-    radial-gradient(circle at 48% 24%, rgba(177, 34, 40, 0.95) 0 4px, transparent 5px),
-    radial-gradient(circle at 56% 24%, rgba(177, 34, 40, 0.95) 0 4px, transparent 5px),
-    radial-gradient(circle at 64% 24%, rgba(177, 34, 40, 0.95) 0 4px, transparent 5px),
-    radial-gradient(circle at 72% 24%, rgba(177, 34, 40, 0.95) 0 4px, transparent 5px),
-    radial-gradient(circle at 80% 24%, rgba(177, 34, 40, 0.95) 0 4px, transparent 5px),
-    linear-gradient(180deg, rgba(244, 247, 251, 0.92), rgba(226, 234, 242, 0.92));
-  box-shadow: 0 10px 18px rgba(7, 29, 56, 0.12);
+    linear-gradient(180deg, rgba(8, 27, 49, 0.18) 0%, rgba(8, 27, 49, 0.42) 100%),
+    linear-gradient(90deg, rgba(8, 27, 49, 0.48) 0%, rgba(8, 27, 49, 0.08) 56%, rgba(8, 27, 49, 0.12) 100%);
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 42px;
+  height: 56px;
+  border: 0;
+  background: rgba(8, 27, 49, 0.34);
+  color: #ffffff;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.slider-arrow:hover {
+  background: rgba(8, 27, 49, 0.54);
+}
+
+.slider-arrow-prev {
+  left: 0;
+}
+
+.slider-arrow-next {
+  right: 0;
 }
 
 .visual-overlay {
@@ -465,46 +478,6 @@ onBeforeUnmount(() => {
   color: #14457c;
   font-size: 12px;
   font-weight: 700;
-}
-
-.slider-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-top: 8px;
-}
-
-.slider-footer > button {
-  min-height: 30px;
-  padding: 0 12px;
-  border: 1px solid rgba(20, 69, 124, 0.14);
-  background: #f3f7fb;
-  color: #17477e;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.slider-dots {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.dot {
-  min-width: 26px;
-  height: 26px;
-  border: 0;
-  background: #7b8795;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.dot.active {
-  background: #ff8b1f;
 }
 
 .banner-news {
@@ -718,8 +691,10 @@ onBeforeUnmount(() => {
     padding: 14px;
   }
 
-  .slider-footer {
-    flex-wrap: wrap;
+  .slider-arrow {
+    width: 34px;
+    height: 48px;
+    font-size: 28px;
   }
 
   .news-title-wrap {
@@ -764,6 +739,10 @@ onBeforeUnmount(() => {
   gap: 28px;
   padding-bottom: 12px;
   background: #ffffff;
+}
+
+.company-top.single-column {
+  grid-template-columns: 1fr;
 }
 
 .company-column {
@@ -828,42 +807,16 @@ onBeforeUnmount(() => {
 .company-image {
   min-height: 136px;
   border: 1px solid rgba(20, 69, 124, 0.12);
-  background:
-    linear-gradient(180deg, rgba(17, 90, 166, 0.12), rgba(17, 90, 166, 0.02)),
-    linear-gradient(135deg, #e9eef4 0%, #c4d2e2 42%, #f5f8fb 100%);
-  position: relative;
+  overflow: hidden;
+  background: #e8edf3;
 }
 
-.company-image::before {
-  content: "";
-  position: absolute;
-  inset: 12px 18px 18px 18px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)) top center / 82% 8px no-repeat,
-    linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)) bottom center / 90% 16px no-repeat,
-    linear-gradient(180deg, #dbe5ef 0%, #ffffff 100%);
-  clip-path: polygon(18% 0, 82% 0, 100% 22%, 100% 100%, 0 100%, 0 22%);
-  border: 1px solid rgba(20, 69, 124, 0.1);
-}
-
-.company-image::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 24px;
-  width: 62%;
-  height: 78px;
-  transform: translateX(-50%);
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(23, 71, 126, 0.16) 0,
-      rgba(23, 71, 126, 0.16) 2px,
-      transparent 2px,
-      transparent 18px
-    ),
-    linear-gradient(180deg, #fdfefe 0%, #eef3f8 100%);
-  border: 1px solid rgba(20, 69, 124, 0.12);
+.company-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  display: block;
+  object-fit: cover;
 }
 
 .company-copy p {
@@ -1088,34 +1041,46 @@ onBeforeUnmount(() => {
 
 .culture-slider {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 10px;
   margin-top: 14px;
+  overflow: hidden;
 }
 
-.culture-arrow {
-  width: 30px;
-  height: 120px;
-  border: 1px solid rgba(16, 40, 66, 0.08);
-  background: #f4f7fa;
-  color: #7d8a96;
-  font-size: 22px;
-  line-height: 1;
-  cursor: pointer;
-  flex: 0 0 auto;
+.culture-slider::after,
+.culture-slider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.culture-slider::before {
+  left: 0;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.culture-slider::after {
+  right: 0;
+  background: linear-gradient(270deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .culture-track {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 4px;
-  flex: 1;
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: culture-marquee 32s linear infinite;
+}
+
+.culture-slider:hover .culture-track {
+  animation-play-state: paused;
 }
 
 .culture-card {
   position: relative;
-  min-height: 120px;
+  width: 280px;
+  min-height: 180px;
   overflow: hidden;
   background: #d7e0ea;
 }
@@ -1123,27 +1088,9 @@ onBeforeUnmount(() => {
 .culture-image {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(180deg, rgba(9, 31, 55, 0.08), rgba(9, 31, 55, 0.18)),
-    linear-gradient(135deg, #cad7e5 0%, #eef3f7 48%, #bfcddd 100%);
-}
-
-.culture-card:nth-child(2) .culture-image {
-  background:
-    linear-gradient(180deg, rgba(9, 31, 55, 0.08), rgba(9, 31, 55, 0.18)),
-    linear-gradient(135deg, #d8ddd7 0%, #f1f3ef 48%, #c8d1c8 100%);
-}
-
-.culture-card:nth-child(3) .culture-image {
-  background:
-    linear-gradient(180deg, rgba(9, 31, 55, 0.08), rgba(9, 31, 55, 0.18)),
-    linear-gradient(135deg, #bed1e3 0%, #f2f6fa 48%, #ccd9e5 100%);
-}
-
-.culture-card:nth-child(4) .culture-image {
-  background:
-    linear-gradient(180deg, rgba(9, 31, 55, 0.08), rgba(9, 31, 55, 0.18)),
-    linear-gradient(135deg, #d7d9dc 0%, #f3f4f5 48%, #c7ccd2 100%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .culture-overlay {
@@ -1169,9 +1116,18 @@ onBeforeUnmount(() => {
   font-size: 12px;
 }
 
+@keyframes culture-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 6px));
+  }
+}
+
 @media (max-width: 1080px) {
   .company-top {
-    grid-template-columns: 1fr;
     gap: 20px;
   }
 
@@ -1183,8 +1139,8 @@ onBeforeUnmount(() => {
     display: none;
   }
 
-  .culture-track {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .culture-card {
+    width: 240px;
   }
 }
 
@@ -1228,20 +1184,12 @@ onBeforeUnmount(() => {
   }
 
   .culture-slider {
-    gap: 6px;
-  }
-
-  .culture-arrow {
-    width: 24px;
-    height: 96px;
-  }
-
-  .culture-track {
-    grid-template-columns: 1fr;
+    margin-top: 12px;
   }
 
   .culture-card {
-    min-height: 96px;
+    width: 220px;
+    min-height: 150px;
   }
 
   .culture-overlay {
