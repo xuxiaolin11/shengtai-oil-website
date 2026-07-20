@@ -141,11 +141,6 @@ const logoUrl = useSiteAsset('images/logo1.png', localLogoUrl)
   transform: scaleX(1);
 }
 
-.is-placeholder {
-  color: rgba(255, 255, 255, 0.76);
-  cursor: default;
-}
-
 @media (max-width: 1080px) {
   .inner {
     padding: 14px 0;

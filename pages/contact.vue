@@ -5,8 +5,7 @@ const companyBannerUrl = useSiteAsset('images/company_1.png', localCompanyBanner
 
 useSeoMeta({
   title: '联系我们 | 东营胜泰石油工程技术有限公司',
-  description:
-    '东营胜泰石油工程技术有限公司联系我们页面，展示公司联系方式、联系地址、地图位置、二维码与在线留言入口。'
+  description: '东营胜泰石油工程技术有限公司官方联系页面。'
 })
 
 const showContactOverviewSection = false
@@ -63,14 +62,14 @@ const officeItems = [
           <span class="hero-kicker">Contact Us</span>
           <h1>联系我们</h1>
           <p>
-            欢迎通过电话、邮箱、在线留言等方式与东营胜泰石油工程技术有限公司取得联系。
+            欢迎就业务合作、项目咨询与来访接待等事宜与东营胜泰石油工程技术有限公司取得联系。
             我们将以规范、及时、负责的态度做好业务沟通与来访接待。
           </p>
         </div>
       </div>
     </section>
 
-    <section class="contact-shell">
+    <section v-if="showContactOverviewSection || showMapSection" class="contact-shell">
       <section v-if="showContactOverviewSection" class="contact-overview">
         <div class="overview-main">
           <header class="block-head">
@@ -120,10 +119,7 @@ const officeItems = [
             </div>
             <div class="map-copy">
               <strong>公司位置展示区</strong>
-              <p>
-                当前页面为标准地图展示版式，后续可直接接入百度地图、高德地图或腾讯地图 iframe / JS SDK，
-                用于展示公司办公地址、导航路线与来访指引。
-              </p>
+              <p>公司地址及来访指引以公司对外发布的正式信息为准。</p>
             </div>
           </div>
 
@@ -145,61 +141,6 @@ const officeItems = [
         </div>
       </section>
 
-      <section class="contact-block">
-        <header class="block-head">
-          <span class="section-en">Online Message</span>
-          <h2>在线留言</h2>
-        </header>
-
-        <div class="form-panel">
-          <div class="form-copy">
-            <strong>欢迎提交您的咨询信息</strong>
-            <p>
-              如您有工程合作、项目咨询、来访预约、招聘沟通等需求，可填写以下信息。
-              页面当前为前端展示版本，后续可接入 `POST /api/forms/contact` 进行线索提交与后台管理。
-            </p>
-          </div>
-
-          <form class="message-form" @submit.prevent>
-            <div class="form-grid">
-              <label class="field">
-                <span>联系人</span>
-                <input type="text" placeholder="请输入联系人姓名" />
-              </label>
-              <label class="field">
-                <span>联系电话</span>
-                <input type="text" placeholder="请输入联系电话" />
-              </label>
-              <label class="field">
-                <span>电子邮箱</span>
-                <input type="email" placeholder="请输入电子邮箱" />
-              </label>
-              <label class="field">
-                <span>联系单位</span>
-                <input type="text" placeholder="请输入单位名称" />
-              </label>
-            </div>
-
-            <label class="field textarea-field">
-              <span>留言内容</span>
-              <textarea rows="6" placeholder="请输入您的咨询内容、合作需求或来访说明"></textarea>
-            </label>
-
-            <div class="form-actions">
-              <button type="submit">提交留言</button>
-              <small>提交功能可在后续接入后台接口后启用</small>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <section class="contact-block footer-note-block">
-        <div class="footer-note">
-          <strong>版权与备案信息</strong>
-          <p>版权所有 © 2026 东营胜泰石油工程技术有限公司</p>
-          <p>备案信息：鲁ICP备XXXXXXXX号</p>
-        </div>
-      </section>
     </section>
   </div>
 </template>
@@ -282,9 +223,7 @@ const officeItems = [
 .overview-side,
 .contact-card,
 .map-card,
-.qr-panel,
-.form-panel,
-.footer-note {
+.qr-panel {
   background: #ffffff;
   border: 1px solid rgba(17, 49, 85, 0.08);
 }
@@ -292,9 +231,7 @@ const officeItems = [
 .overview-main,
 .overview-side,
 .map-card,
-.qr-panel,
-.form-panel,
-.footer-note {
+.qr-panel {
   padding: 22px 24px;
 }
 
@@ -344,9 +281,7 @@ const officeItems = [
 .contact-card strong,
 .office-item strong,
 .map-copy strong,
-.form-copy strong,
-.qr-card strong,
-.footer-note strong {
+.qr-card strong {
   display: block;
   margin-top: 10px;
   color: #1d2d40;
@@ -357,9 +292,7 @@ const officeItems = [
 .contact-card p,
 .qr-head p,
 .map-copy p,
-.form-copy p,
-.qr-card p,
-.footer-note p {
+.qr-card p {
   margin: 10px 0 0;
   color: #52606f;
   font-size: 14px;
@@ -531,96 +464,15 @@ const officeItems = [
     linear-gradient(#1b2b3e 8px, transparent 8px) 14px 14px / 20px 20px;
 }
 
-.form-panel {
-  display: grid;
-  grid-template-columns: 320px minmax(0, 1fr);
-  gap: 22px;
-}
-
-.message-form {
-  min-width: 0;
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.field {
-  display: grid;
-  gap: 8px;
-}
-
-.field span {
-  color: #1d2d40;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.field input,
-.field textarea {
-  width: 100%;
-  border: 1px solid rgba(17, 49, 85, 0.14);
-  background: #fbfcfd;
-  color: #2c3642;
-  padding: 12px 14px;
-  outline: none;
-}
-
-.field input:focus,
-.field textarea:focus {
-  border-color: rgba(210, 54, 59, 0.42);
-  box-shadow: 0 0 0 3px rgba(210, 54, 59, 0.08);
-}
-
-.textarea-field {
-  margin-top: 16px;
-}
-
-.form-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 18px;
-}
-
-.form-actions button {
-  min-width: 148px;
-  min-height: 46px;
-  border: 0;
-  background: linear-gradient(180deg, #d2363b, #b51f2f);
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.form-actions small {
-  color: #7d8793;
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-.footer-note-block {
-  padding-top: 24px;
-}
-
-.footer-note {
-  text-align: center;
-}
-
 @media (max-width: 1080px) {
   .contact-overview,
-  .map-layout,
-  .form-panel {
+  .map-layout {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 860px) {
-  .contact-grid,
-  .form-grid {
+  .contact-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -650,7 +502,6 @@ const officeItems = [
   .hero-copy p,
   .contact-card p,
   .map-copy p,
-  .form-copy p,
   .qr-card p {
     font-size: 14px;
   }
@@ -662,9 +513,7 @@ const officeItems = [
   .overview-main,
   .overview-side,
   .map-card,
-  .qr-panel,
-  .form-panel,
-  .footer-note {
+  .qr-panel {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -673,9 +522,5 @@ const officeItems = [
     min-height: 240px;
   }
 
-  .form-actions {
-    align-items: flex-start;
-    flex-direction: column;
-  }
 }
 </style>

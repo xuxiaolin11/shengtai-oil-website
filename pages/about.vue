@@ -26,10 +26,10 @@ const selectedSection = ref<keyof typeof sectionMap>('company')
 const scaleItems = [
   { label: '注册资本', value: '5000万元' },
   { label: '占地面积', value: '48亩' },
-  { label: '固定职工', value: '180人' },
-  { label: '本科及以上', value: '35人' },
-  { label: '高级职称人员', value: '7人' },
-  { label: '高级技术人员', value: '28人' }
+  { label: '固定职工', value: '300人' },
+  { label: '本科及以上', value: '65人' },
+  { label: '高级职称人员', value: '20人' },
+  { label: '高级技术人员', value: '45人' }
 ]
 
 const rigItems = ['30钻机', '40钻机', '50钻机', '70钻机', '共计10部钻机']
@@ -120,7 +120,7 @@ const orgUnits = [
               </div>
               <div class="intro-copy">
                 <p>
-                  东营胜泰石油工程技术有限公司成立于2009年，由中石化胜利石油管理局黄河钻井公司改制成立，
+                  东营胜泰石油工程技术有限公司成立于2009年，座落于胜利油田基地山东东营，
                   是面向石油天然气工程服务领域持续发展的工程技术企业。
                 </p>
                 <p>

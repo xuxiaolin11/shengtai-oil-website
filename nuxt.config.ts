@@ -28,7 +28,6 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8080/api',
       cdnBase: process.env.NUXT_PUBLIC_CDN_BASE || '',
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://sdstoil.com'
     }

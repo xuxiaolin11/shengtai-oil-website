@@ -19,7 +19,7 @@ const cultureImage6Url = useSiteAsset('images/culture/culture_6.jpg', localCultu
 useSeoMeta({
   title: '东营胜泰石油工程技术有限公司 | 山东胜泰石油工程技术服务',
   description:
-    '东营胜泰石油工程技术有限公司，立足山东东营，提供石油钻井工程技术服务、油气开发现场保障与能源工程施工服务。',
+    '东营胜泰石油工程技术有限公司，座落于胜利油田基地山东东营，提供石油钻井工程技术服务、油气开发现场保障与能源工程施工服务。',
   keywords: '东营胜泰, 山东胜泰, 石油工程技术服务, 钻井工程, 油气开发, 能源工程施工'
 })
 
@@ -27,43 +27,31 @@ const slides = [
   {
     date: '2026-04-27',
     title: '公司持续强化石油工程主业能力建设，重点井场项目组织运行平稳有序',
-    summary: '后续可通过后台 API 配置轮播图片、标题、副标题、跳转链接与上下线状态。',
-    label: '01',
     image: cultureImage1Url
   },
   {
     date: '2026-04-18',
     title: '坚持安全生产与规范管理并重，推进现场管理标准化、精细化、数字化',
-    summary: '本区域为 Banner 轮播位静态结构，后续可直接接入后台内容管理系统。',
-    label: '02',
     image: cultureImage2Url
   },
   {
     date: '2026-04-08',
     title: '深耕油气工程服务主业，稳步拓展地热井施工与新能源相关业务领域',
-    summary: '支持展示企业重点新闻、项目成果、责任信息与年度专题活动内容。',
-    label: '03',
     image: cultureImage3Url
   },
   {
     date: '2026-03-26',
     title: '持续强化技术队伍建设与现场执行能力，夯实复杂工况施工组织基础',
-    summary: '围绕重点区块项目执行与班组协作管理，进一步提升现场保障与履约能力。',
-    label: '04',
     image: cultureImage4Url
   },
   {
     date: '2026-03-09',
     title: '坚持标准化作业与精细化管控并行，稳步提升钻井施工品质与安全水平',
-    summary: '通过严格过程控制与班组协同管理，持续提升工程质量与现场管理成效。',
-    label: '05',
     image: cultureImage5Url
   },
   {
     date: '2026-02-22',
     title: '聚焦一线实战与人才培养并重，推动项目执行、技术提升与团队成长协同发力',
-    summary: '以项目实践带动队伍成长，进一步增强复杂井施工能力与区域服务支撑能力。',
-    label: '06',
     image: cultureImage6Url
   }
 ]
@@ -86,7 +74,6 @@ const quickLinks = [
 const showQuickLinks = false
 const showDivisionSection = false
 const showCultureSection = false
-const showBannerOverlayContent = false
 
 const divisionItems = [
   { title: '石油工程技术服务板块', date: '2026-04-11' },
@@ -172,13 +159,6 @@ onBeforeUnmount(() => {
             <button class="slider-arrow slider-arrow-next" type="button" aria-label="下一张轮播图" @click="nextSlide">
               ›
             </button>
-            <div v-if="showBannerOverlayContent" class="visual-overlay">
-              <div class="visual-copy">
-                <div class="visual-kicker">Shengtai Petroleum Engineering</div>
-                <p>{{ currentSlide.summary }}</p>
-              </div>
-              <div class="visual-badge">Banner {{ currentSlide.label }}</div>
-            </div>
           </div>
         </article>
 
@@ -449,46 +429,6 @@ onBeforeUnmount(() => {
   right: 0;
 }
 
-.visual-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 18px;
-}
-
-.visual-copy {
-  max-width: 74%;
-  padding: 12px 14px;
-  background: rgba(11, 35, 64, 0.58);
-  color: rgba(255, 255, 255, 0.92);
-}
-
-.visual-kicker {
-  margin-bottom: 10px;
-  color: #d8b77b;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-}
-
-.visual-copy p {
-  margin: 0;
-  line-height: 1.7;
-  font-size: 14px;
-}
-
-.visual-badge {
-  align-self: flex-end;
-  padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.88);
-  color: #14457c;
-  font-size: 12px;
-  font-weight: 700;
-}
-
 .banner-news {
   min-width: 0;
 }
@@ -693,11 +633,6 @@ onBeforeUnmount(() => {
 
   .slider-visual {
     min-height: 220px;
-  }
-
-  .visual-copy {
-    max-width: 100%;
-    padding: 14px;
   }
 
   .slider-arrow {
