@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import companyUrl from '~/assets/images/company.png'
-import companyBannerUrl from '~/assets/images/company_1.png'
-import qualificationImageUrl from '~/assets/images/gongsizizhi.png'
+import localCompanyUrl from '~/assets/images/company.png'
+import localCompanyBannerUrl from '~/assets/images/company_1.png'
+import localQualificationImageUrl from '~/assets/images/gongsizizhi.png'
+
+const companyUrl = useSiteAsset('images/company.png', localCompanyUrl)
+const companyBannerUrl = useSiteAsset('images/company_1.png', localCompanyBannerUrl)
+const qualificationImageUrl = useSiteAsset('images/gongsizizhi.png', localQualificationImageUrl)
 
 useSeoMeta({
   title: '公司简介 | 东营胜泰石油工程技术有限公司',

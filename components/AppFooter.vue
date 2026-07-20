@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import logoUrl from '~/assets/images/logo1.png'
+import localLogoUrl from '~/assets/images/logo1.png'
+
+const logoUrl = useSiteAsset('images/logo1.png', localLogoUrl)
+const miitFilingUrl = 'https://beian.miit.gov.cn/'
 </script>
 
 <template>
@@ -14,7 +17,14 @@ import logoUrl from '~/assets/images/logo1.png'
       </div>
       <div class="footer-meta">
         <span>版权所有 © 2026 东营胜泰石油工程技术有限公司</span>
-        <span>备案信息：鲁ICP备XXXXXXXX号</span>
+        <a
+          class="filing-link"
+          :href="miitFilingUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          鲁ICP备2026039816号
+        </a>
       </div>
     </div>
   </footer>
@@ -71,8 +81,19 @@ import logoUrl from '~/assets/images/logo1.png'
 }
 
 .footer-brand span,
-.footer-meta span {
+.footer-meta span,
+.filing-link {
   line-height: 1.7;
+}
+
+.filing-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.filing-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 @media (max-width: 840px) {

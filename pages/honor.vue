@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import safetyLicenseUrl from '~/assets/images/honor/anquan.png'
+import localSafetyLicenseUrl from '~/assets/images/honor/anquan.png'
+
+const safetyLicenseUrl = useSiteAsset('images/honor/anquan.png', localSafetyLicenseUrl)
 
 useSeoMeta({
   title: '资质荣誉 | 东营胜泰石油工程技术有限公司',

@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import companyBannerUrl from '~/assets/images/company_1.png'
+import localCompanyBannerUrl from '~/assets/images/company_1.png'
 import { findNewsArticleBySlug, newsArticles } from '~/content/news'
+
+const companyBannerUrl = useSiteAsset('images/company_1.png', localCompanyBannerUrl)
 
 const route = useRoute()
 const slug = computed(() => String(route.params.slug || ''))

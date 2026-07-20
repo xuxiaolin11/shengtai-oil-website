@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const route = useRoute()
-import logoUrl from '~/assets/images/logo1.png'
+import localLogoUrl from '~/assets/images/logo1.png'
+
+const logoUrl = useSiteAsset('images/logo1.png', localLogoUrl)
 </script>
 
 <template>

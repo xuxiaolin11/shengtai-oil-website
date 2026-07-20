@@ -1,17 +1,26 @@
 <script setup lang="ts">
 import { newsArticles } from '~/content/news'
-import companyImageUrl from '~/assets/images/company.png'
-import cultureImage1Url from '~/assets/images/culture/culture_1.jpg'
-import cultureImage2Url from '~/assets/images/culture/culture_2.jpg'
-import cultureImage3Url from '~/assets/images/culture/culture_3.jpg'
-import cultureImage4Url from '~/assets/images/culture/culture_4.jpg'
-import cultureImage5Url from '~/assets/images/culture/culture_5.jpg'
-import cultureImage6Url from '~/assets/images/culture/culture_6.jpg'
+import localCompanyImageUrl from '~/assets/images/company.png'
+import localCultureImage1Url from '~/assets/images/culture/culture_1.jpg'
+import localCultureImage2Url from '~/assets/images/culture/culture_2.jpg'
+import localCultureImage3Url from '~/assets/images/culture/culture_3.jpg'
+import localCultureImage4Url from '~/assets/images/culture/culture_4.jpg'
+import localCultureImage5Url from '~/assets/images/culture/culture_5.jpg'
+import localCultureImage6Url from '~/assets/images/culture/culture_6.jpg'
+
+const companyImageUrl = useSiteAsset('images/company.png', localCompanyImageUrl)
+const cultureImage1Url = useSiteAsset('images/culture/culture_1.jpg', localCultureImage1Url)
+const cultureImage2Url = useSiteAsset('images/culture/culture_2.jpg', localCultureImage2Url)
+const cultureImage3Url = useSiteAsset('images/culture/culture_3.jpg', localCultureImage3Url)
+const cultureImage4Url = useSiteAsset('images/culture/culture_4.jpg', localCultureImage4Url)
+const cultureImage5Url = useSiteAsset('images/culture/culture_5.jpg', localCultureImage5Url)
+const cultureImage6Url = useSiteAsset('images/culture/culture_6.jpg', localCultureImage6Url)
 
 useSeoMeta({
-  title: '首页 | 东营胜泰石油工程技术有限公司',
+  title: '东营胜泰石油工程技术有限公司 | 山东胜泰石油工程技术服务',
   description:
-    '东营胜泰石油工程技术有限公司首页，展示企业轮播主图、最新动态与核心栏目快捷入口。'
+    '东营胜泰石油工程技术有限公司，立足山东东营，提供石油钻井工程技术服务、油气开发现场保障与能源工程施工服务。',
+  keywords: '东营胜泰, 山东胜泰, 石油工程技术服务, 钻井工程, 油气开发, 能源工程施工'
 })
 
 const slides = [

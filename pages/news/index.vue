@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import companyBannerUrl from '~/assets/images/company_1.png'
+import localCompanyBannerUrl from '~/assets/images/company_1.png'
 import { newsArticles, newsCategoryTabs } from '~/content/news'
+
+const companyBannerUrl = useSiteAsset('images/company_1.png', localCompanyBannerUrl)
 
 useSeoMeta({
   title: '新闻动态 | 东营胜泰石油工程技术有限公司',
