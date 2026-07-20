@@ -8,6 +8,9 @@ useSeoMeta({
   description: '东营胜泰石油工程技术有限公司官方联系页面。'
 })
 
+const contactPhone = '0546-8080866'
+const contactPhoneHref = `tel:${contactPhone}`
+
 const showContactOverviewSection = false
 const showMapSection = false
 
@@ -67,6 +70,16 @@ const officeItems = [
           </p>
         </div>
       </div>
+    </section>
+
+    <section class="contact-phone-section">
+      <div class="phone-copy">
+        <span>联系电话</span>
+        <strong>业务咨询与来访联络</strong>
+      </div>
+      <a class="phone-link" :href="contactPhoneHref" :aria-label="`拨打电话 ${contactPhone}`">
+        {{ contactPhone }}
+      </a>
     </section>
 
     <section v-if="showContactOverviewSection || showMapSection" class="contact-shell">
@@ -205,6 +218,52 @@ const officeItems = [
   color: rgba(241, 244, 248, 0.9);
   font-size: 16px;
   line-height: 1.95;
+}
+
+.contact-phone-section {
+  width: min(1240px, calc(100% - 32px));
+  margin: 22px auto 48px;
+  padding: 20px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: #ffffff;
+  border: 1px solid rgba(17, 49, 85, 0.1);
+  border-left: 4px solid #c92f36;
+}
+
+.phone-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.phone-copy span {
+  color: #8a7583;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.phone-copy strong {
+  color: #1d2d40;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.phone-link {
+  color: #b9252c;
+  font-family: "Times New Roman", serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.phone-link:hover,
+.phone-link:focus-visible {
+  color: #8f1c24;
+  text-decoration: underline;
 }
 
 .contact-shell {
@@ -479,6 +538,7 @@ const officeItems = [
 
 @media (max-width: 720px) {
   .contact-hero,
+  .contact-phone-section,
   .contact-shell {
     width: min(1240px, calc(100% - 20px));
   }
@@ -497,6 +557,17 @@ const officeItems = [
 
   .hero-copy {
     padding: 24px 18px 18px;
+  }
+
+  .contact-phone-section {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px 20px;
+  }
+
+  .phone-link {
+    font-size: 28px;
   }
 
   .hero-copy p,
