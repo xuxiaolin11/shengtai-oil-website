@@ -8,7 +8,7 @@ useSeoMeta({
   description: '东营胜泰石油工程技术有限公司官方联系页面。'
 })
 
-const contactPhone = '0546-8080866'
+const contactPhone = '0546-8305868'
 const contactPhoneHref = `tel:${contactPhone}`
 
 const showContactOverviewSection = false
