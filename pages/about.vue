@@ -13,7 +13,8 @@ useSeoMeta({
     '东营胜泰石油工程技术有限公司公司简介页面，展示企业成立背景、规模信息、经营范围与组织架构。'
 })
 
-const sideMenu = ['公司简介', '企业资质', '公司领导', '组织架构']
+// 企业资质 / 公司领导 / 组织架构 暂时隐藏，需要时把对应文案加回数组即可恢复
+const sideMenu = ['公司简介']
 const sectionMap = {
   company: '公司简介',
   qualification: '企业资质',
