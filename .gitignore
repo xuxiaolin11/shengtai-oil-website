@@ -1,6 +1,9 @@
 node_modules/
 .nuxt/
+.nuxt-build/
+.nuxt-build.*/
 .output/
+.output.*/
 dist/
 .idea/
 .vscode/

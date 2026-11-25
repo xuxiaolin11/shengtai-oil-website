@@ -1,39 +1,50 @@
 <script setup lang="ts">
 import localCompanyBannerUrl from '~/assets/images/company_1.png'
-import localPartyBranchApprovalUrl from '~/assets/images/news/party_branch_approval.jpg'
-import localPartySecretaryElectionApprovalUrl from '~/assets/images/news/party_secretary_election_approval.jpg'
-import { findNewsArticleBySlug, newsArticles } from '~/content/news'
 
 const companyBannerUrl = useSiteAsset('images/company_1.png', localCompanyBannerUrl)
 
-const localNewsImageMap: Record<string, string> = {
-  'images/news/party_branch_approval.jpg': localPartyBranchApprovalUrl,
-  'images/news/party_secretary_election_approval.jpg': localPartySecretaryElectionApprovalUrl
+type NewsApiItem = {
+  slug: string
+  title: string
+  date: string
+  category: string
+  summary: string
+  keywords: string[]
+  paragraphs: string[]
+  images: { path: string; alt: string }[]
+}
+
+type DetailResponse = {
+  article: NewsApiItem
+  related: NewsApiItem[]
 }
 
 const route = useRoute()
 const slug = computed(() => String(route.params.slug || ''))
-const article = computed(() => findNewsArticleBySlug(slug.value))
 
-if (!article.value) {
+const { data: detailData } = await useFetch<{ code: number; data: DetailResponse }>(
+  useApiUrl(`/api/public/news/${encodeURIComponent(slug.value)}`),
+  { default: null }
+)
+
+if (!detailData.value?.data?.article) {
   throw createError({
     statusCode: 404,
     statusMessage: '新闻不存在'
   })
 }
 
-useSeoMeta({
-  title: `${article.value.title} | 东营胜泰石油工程技术有限公司`,
-  description: article.value.summary
-})
+const article = computed(() => detailData.value?.data?.article)
+const relatedArticles = computed(() => detailData.value?.data?.related || [])
 
-const relatedArticles = computed(() =>
-  newsArticles.filter((item) => item.slug !== article.value?.slug).slice(0, 4)
-)
+useSeoMeta({
+  title: () => `${article.value?.title || '新闻详情'} | 东营胜泰石油工程技术有限公司`,
+  description: () => article.value?.summary || ''
+})
 
 const articleImages = computed(() =>
   (article.value?.images ?? []).map((image) => ({
-    src: useSiteAsset(image.path, localNewsImageMap[image.path] ?? ''),
+    src: useAssetUrl(image.path),
     alt: image.alt
   }))
 )

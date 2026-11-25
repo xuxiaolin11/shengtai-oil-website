@@ -1,8 +1,22 @@
 <script setup lang="ts">
 import localCompanyBannerUrl from '~/assets/images/company_1.png'
-import { newsArticles, newsCategoryTabs } from '~/content/news'
 
 const companyBannerUrl = useSiteAsset('images/company_1.png', localCompanyBannerUrl)
+
+type NewsApiItem = {
+  slug: string
+  title: string
+  date: string
+  category: string
+  summary: string
+}
+
+const { data: categoriesData } = await useFetch<{ code: number; data: string[] }>(
+  useApiUrl('/api/public/news/categories'),
+  { default: () => ({ code: 0, data: [] }) }
+)
+
+const newsCategoryTabs = computed(() => ['全部新闻', ...(categoriesData.value?.data || [])])
 
 useSeoMeta({
   title: '新闻动态 | 东营胜泰石油工程技术有限公司',
@@ -12,11 +26,18 @@ useSeoMeta({
 
 const activeTab = ref('全部新闻')
 
-const filteredNews = computed(() =>
-  activeTab.value === '全部新闻'
-    ? newsArticles
-    : newsArticles.filter((item) => item.category === activeTab.value)
+const { data: newsData } = await useFetch<{ code: number; data: { items: NewsApiItem[] } }>(
+  useApiUrl('/api/public/news'),
+  {
+    default: () => ({ code: 0, data: { items: [] } }),
+    query: computed(() => ({
+      category: activeTab.value === '全部新闻' ? '' : activeTab.value,
+      pageSize: 50
+    }))
+  }
 )
+
+const filteredNews = computed(() => newsData.value?.data?.items || [])
 </script>
 
 <template>

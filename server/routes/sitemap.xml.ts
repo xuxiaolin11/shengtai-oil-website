@@ -1,5 +1,3 @@
-import { newsArticles } from '~/content/news'
-
 type SitemapEntry = {
   path: string
   lastModified?: string
@@ -45,10 +43,24 @@ const escapeXml = (value: string) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;')
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig()
   const siteUrl = runtimeConfig.public.siteUrl.replace(/\/$/, '')
-  const newsEntries: SitemapEntry[] = newsArticles.map((article) => ({
+  const apiBase = String(runtimeConfig.public.apiBase || 'http://localhost:3001').replace(/\/+$/, '')
+
+  let publishedNews: { slug: string; date: string }[] = []
+  try {
+    const response = await $fetch<{ code: number; data: { slug: string; date: string }[] }>(
+      `${apiBase}/api/public/news/sitemap`
+    )
+    if (response.code === 0) {
+      publishedNews = response.data
+    }
+  } catch (error) {
+    console.error('sitemap 获取新闻数据失败', error)
+  }
+
+  const newsEntries: SitemapEntry[] = publishedNews.map((article) => ({
     path: `/news/${article.slug}`,
     lastModified: article.date,
     priority: '0.7'

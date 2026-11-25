@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { newsArticles } from '~/content/news'
 import localCompanyImageUrl from '~/assets/images/company.png'
 import localCultureImage1Url from '~/assets/images/culture/culture_1.jpg'
 import localCultureImage2Url from '~/assets/images/culture/culture_2.jpg'
@@ -23,46 +22,46 @@ useSeoMeta({
   keywords: '东营胜泰, 山东胜泰, 石油工程技术服务, 钻井工程, 油气开发, 能源工程施工'
 })
 
-const slides = [
-  {
-    date: '2026-04-27',
-    title: '公司持续强化石油工程主业能力建设，重点井场项目组织运行平稳有序',
-    image: cultureImage1Url
-  },
-  {
-    date: '2026-04-18',
-    title: '坚持安全生产与规范管理并重，推进现场管理标准化、精细化、数字化',
-    image: cultureImage2Url
-  },
-  {
-    date: '2026-04-08',
-    title: '深耕油气工程服务主业，稳步拓展地热井施工与新能源相关业务领域',
-    image: cultureImage3Url
-  },
-  {
-    date: '2026-03-26',
-    title: '持续强化技术队伍建设与现场执行能力，夯实复杂工况施工组织基础',
-    image: cultureImage4Url
-  },
-  {
-    date: '2026-03-09',
-    title: '坚持标准化作业与精细化管控并行，稳步提升钻井施工品质与安全水平',
-    image: cultureImage5Url
-  },
-  {
-    date: '2026-02-22',
-    title: '聚焦一线实战与人才培养并重，推动项目执行、技术提升与团队成长协同发力',
-    image: cultureImage6Url
-  }
-]
+type CarouselApiItem = {
+  date: string
+  title: string
+  imageUrl: string
+}
+
+type FeaturedNewsApiItem = {
+  slug: string
+  title: string
+  date: string
+  summary: string
+}
+
+const { data: carouselData } = await useFetch<{ code: number; data: CarouselApiItem[] }>(
+  useApiUrl('/api/public/carousel'),
+  { default: () => ({ code: 0, data: [] }) }
+)
+
+const { data: featuredData } = await useFetch<{ code: number; data: FeaturedNewsApiItem[] }>(
+  useApiUrl('/api/public/news/featured'),
+  { default: () => ({ code: 0, data: [] }) }
+)
+
+const slides = computed(() =>
+  (carouselData.value?.data || []).map((item) => ({
+    date: item.date,
+    title: item.title,
+    image: useAssetUrl(item.imageUrl)
+  }))
+)
 
 const newsTabs = ['公司要闻']
 
-const newsItems = newsArticles.slice(0, 3).map((item) => ({
-  ...item,
-  day: item.date.slice(8, 10),
-  ym: item.date.slice(0, 7)
-}))
+const newsItems = computed(() =>
+  (featuredData.value?.data || []).slice(0, 3).map((item) => ({
+    ...item,
+    day: item.date.slice(8, 10),
+    ym: item.date.slice(0, 7)
+  }))
+)
 
 const quickLinks = [
   { title: '公司概况', subtitle: 'Company profile' },
@@ -118,14 +117,16 @@ const cultureMarqueeSlides = [...cultureSlides, ...cultureSlides]
 
 const currentIndex = ref(0)
 
-const currentSlide = computed(() => slides[currentIndex.value])
+const currentSlide = computed(() => slides.value[currentIndex.value] || slides.value[0])
 
 const prevSlide = () => {
-  currentIndex.value = (currentIndex.value + slides.length - 1) % slides.length
+  if (slides.value.length < 2) return
+  currentIndex.value = (currentIndex.value + slides.value.length - 1) % slides.value.length
 }
 
 const nextSlide = () => {
-  currentIndex.value = (currentIndex.value + 1) % slides.length
+  if (slides.value.length < 2) return
+  currentIndex.value = (currentIndex.value + 1) % slides.value.length
 }
 
 let timer: ReturnType<typeof setInterval> | null = null
