@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import localCompanyBannerUrl from '~/assets/images/company_1.png'
+import localPartyBranchApprovalUrl from '~/assets/images/news/party_branch_approval.jpg'
+import localPartySecretaryElectionApprovalUrl from '~/assets/images/news/party_secretary_election_approval.jpg'
 import { findNewsArticleBySlug, newsArticles } from '~/content/news'
 
 const companyBannerUrl = useSiteAsset('images/company_1.png', localCompanyBannerUrl)
+
+const localNewsImageMap: Record<string, string> = {
+  'images/news/party_branch_approval.jpg': localPartyBranchApprovalUrl,
+  'images/news/party_secretary_election_approval.jpg': localPartySecretaryElectionApprovalUrl
+}
 
 const route = useRoute()
 const slug = computed(() => String(route.params.slug || ''))
@@ -22,6 +29,13 @@ useSeoMeta({
 
 const relatedArticles = computed(() =>
   newsArticles.filter((item) => item.slug !== article.value?.slug).slice(0, 4)
+)
+
+const articleImages = computed(() =>
+  (article.value?.images ?? []).map((image) => ({
+    src: useSiteAsset(image.path, localNewsImageMap[image.path] ?? ''),
+    alt: image.alt
+  }))
 )
 </script>
 
@@ -55,6 +69,12 @@ const relatedArticles = computed(() =>
           <p v-for="paragraph in article?.paragraphs" :key="paragraph">
             {{ paragraph }}
           </p>
+
+          <div v-if="articleImages.length" class="article-images">
+            <figure v-for="image in articleImages" :key="image.src" class="article-image">
+              <img :src="image.src" :alt="image.alt" />
+            </figure>
+          </div>
         </div>
       </article>
 
@@ -208,6 +228,25 @@ const relatedArticles = computed(() =>
   line-height: 2;
   text-align: justify;
   text-indent: 2em;
+}
+
+.article-images {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.article-image {
+  margin: 0;
+  padding: 12px;
+  background: #f6f8fb;
+  border: 1px solid rgba(17, 49, 85, 0.08);
+}
+
+.article-image img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .detail-side {

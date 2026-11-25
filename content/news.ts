@@ -6,9 +6,47 @@ export type NewsArticle = {
   summary: string
   keywords: string[]
   paragraphs: string[]
+  images?: { path: string; alt: string }[]
 }
 
 export const newsArticles: NewsArticle[] = [
+  {
+    slug: 'xinjiang-winter-drilling-campaign',
+    title: '驻疆三支队伍冒寒攻坚钻井任务',
+    date: '2026-11-25',
+    category: '公司要闻',
+    summary:
+      '新疆阜康作业区气温骤降、风雪肆虐，东营胜泰驻疆三支钻井队伍迎难而上，坚守井场抢赶施工进度，全力保证完成阶段性施工任务。',
+    keywords: ['新疆阜康', '冬季施工', '驻疆队伍', '钻井攻坚', '履约担当'],
+    paragraphs: [
+      '近日，新疆阜康作业区气温骤降，风雪肆虐，野外施工条件十分艰苦。面对甲方繁重的钻探任务，东营胜泰驻疆三支钻井队伍迎难而上，坚守井场抢赶施工进度。',
+      '驻疆三支队伍严格落实亚新项目组施工要求，细化冬季施工保障方案，抓实设备保温防冻，常态化开展安全隐患排查，严守安全质量底线。全体员工顶风雪、抗低温，以过硬作风践行履约担当，充分彰显胜泰铁军不畏艰苦、敢打硬仗的实干精神，全力保证完成阶段性施工任务。'
+    ]
+  },
+  {
+    slug: 'party-branch-established',
+    title: '东营胜泰石油工程技术有限公司党支部（胜泰支部）正式获批成立',
+    date: '2026-10-22',
+    category: '党建工作',
+    summary:
+      '近日，经中共东营市垦利经济开发区工作委员会批复批准，中共东营胜泰石油工程技术有限公司支部委员会（胜泰支部）正式成立，同时批复了支部书记选举相关事项。',
+    keywords: ['党支部成立', '胜泰支部', '党建工作', '党建引领', '基层党组织'],
+    paragraphs: [
+      '近日，经中共东营市垦利经济开发区工作委员会批复批准，中共东营胜泰石油工程技术有限公司支部委员会（胜泰支部）正式成立，同时批复了支部书记选举相关事项。',
+      '胜泰支部设支委1名、书记1名。该支部的成立，是公司深入贯彻落实党的二十届五中全会精神、持之以恒推进全面从严治党的具体实践，是公司加强基层党组织建设、推动党建工作全面覆盖的重要里程碑。',
+      '下一步，胜泰支部将严格夯实党建根基，推动党建工作与公司石油工程业务深度融合，积极发挥党组织战斗堡垒与党员先锋模范作用，以红色力量引领企业行稳致远，以高质量党建引领公司高质量发展。'
+    ],
+    images: [
+      {
+        path: 'images/news/party_branch_approval.jpg',
+        alt: '关于同意成立东营胜泰石油工程技术有限公司公司党支部的批复'
+      },
+      {
+        path: 'images/news/party_secretary_election_approval.jpg',
+        alt: '关于同意中共东营胜泰石油工程技术有限公司支部委员会召开党员大会选举支部书记的批复'
+      }
+    ]
+  },
   {
     slug: 'cmg7-x2-well-completed',
     title: 'CMG7-X2井顺利完井',
@@ -125,7 +163,7 @@ export const newsArticles: NewsArticle[] = [
   }
 ]
 
-export const newsCategoryTabs = ['全部新闻', '公司要闻', '媒体报道', '专题专栏']
+export const newsCategoryTabs = ['全部新闻', '公司要闻', '党建工作', '媒体报道', '专题专栏']
 
 export const findNewsArticleBySlug = (slug: string) =>
   newsArticles.find((article) => article.slug === slug)
